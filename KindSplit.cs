@@ -66,13 +66,5 @@ namespace KindSplit
                 LiveSplit.Start();
             }
         }
-        public override void OnUpdate()
-        {
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                LoggerInstance.Msg("Resetting");
-                SceneManager.LoadScene("Version 1.9 POST");
-            }
-        }
     }
 }
