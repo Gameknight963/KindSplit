@@ -10,11 +10,9 @@ To install:
 
 1. **Install [MelonLoader](https://melonwiki.xyz/#/) to your Miside Zero directory.** If you installed the game with the installer, it will be found in  
 
-``
-
+```
 C:\Users\[USERNAME]\AppData\Local\Programs\MiSide Zero Alpha
-
-``
+```
 
 2. **Place KindSplit.dll inside your 'Mods'** folder once Melonloader is installed.
 
