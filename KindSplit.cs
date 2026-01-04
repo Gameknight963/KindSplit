@@ -44,8 +44,7 @@ namespace KindSplit
             {
                 LiveSplit.Split();
             }
-
-            if (activeScene == "Version 1.9 POST")
+            else
             {
                 LiveSplit.Reset();
                 LiveSplit.Start();
