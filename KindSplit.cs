@@ -13,37 +13,22 @@ namespace KindSplit
 {
     public class LiveSplit
     {
-        public static void Start()
-        {
-            TcpClient client = new TcpClient("127.0.0.1", 16834);
-            var stream = client.GetStream();
-            byte[] data = Encoding.ASCII.GetBytes("starttimer\r\n");
-            stream.Write(data, 0, data.Length);
-        }
-        public static void Pause()
-        {
-            TcpClient client = new TcpClient("127.0.0.1", 16834);
-            var stream = client.GetStream();
-            byte[] data = Encoding.ASCII.GetBytes("pause\r\n");
-            stream.Write(data, 0, data.Length);
-        }
-        public static void Reset()
-        {
-            TcpClient client = new TcpClient("127.0.0.1", 16834);
-            var stream = client.GetStream();
-            byte[] data = Encoding.ASCII.GetBytes("reset\r\n");
-            stream.Write(data, 0, data.Length);
-        }
-        public static void Split()
-        {
-            TcpClient client = new TcpClient("127.0.0.1", 16834);
-            var stream = client.GetStream();
-            byte[] data = Encoding.ASCII.GetBytes("split\r\n");
-            stream.Write(data, 0, data.Length);
-        }
+        private const string IP = "127.0.0.1";
+        private const int PORT = 16834;
 
+        public static void Start() => PostCommand("starttimer");
+        public static void Pause() => PostCommand("pause");
+        public static void Reset() => PostCommand("reset");
+        public static void Split() => PostCommand("split");
 
+        private static void PostCommand(string command) {
+            TcpClient client = new TcpClient(IP, PORT);
+            var stream = client.GetStream();
+            byte[] data = Encoding.ASCII.GetBytes($"{command}\r\n");
+            stream.Write(data, 0, data.Length);
+        }
     }
+
     public class Mod : MelonMod
     {
         string activeScene;
@@ -59,8 +44,7 @@ namespace KindSplit
             {
                 LiveSplit.Split();
             }
-
-            if (activeScene == "Version 1.9 POST")
+            else
             {
                 LiveSplit.Reset();
                 LiveSplit.Start();
